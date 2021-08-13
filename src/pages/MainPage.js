@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import * as BooksAPI from '../BooksAPI'
 import '../App.css'
 
 class MainPage extends Component {
@@ -41,7 +42,7 @@ class MainPage extends Component {
                         <div className="book-top">
                           <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
                           <div className="book-shelf-changer">
-                            <select>
+                            <select value={book.shelf} onChange={(e) => BooksAPI.update(book, e.target.value)}>
                               <option value="move" disabled>Move to...</option>
                               <option value="currentlyReading">Currently Reading</option>
                               <option value="wantToRead">Want to Read</option>
@@ -67,7 +68,7 @@ class MainPage extends Component {
                         <div className="book-top">
                           <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
                           <div className="book-shelf-changer">
-                            <select>
+                            <select value={book.shelf} onChange={(e) => BooksAPI.update(book, e.target.value)}> 
                               <option value="move" disabled>Move to...</option>
                               <option value="currentlyReading">Currently Reading</option>
                               <option value="wantToRead">Want to Read</option>
@@ -93,7 +94,7 @@ class MainPage extends Component {
                         <div className="book-top">
                           <div className="book-cover" style={{ width: 128, height: 192, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
                           <div className="book-shelf-changer">
-                            <select>
+                            <select value={book.shelf} onChange={(e) => BooksAPI.update(book, e.target.value)}>
                               <option value="move" disabled>Move to...</option>
                               <option value="currentlyReading">Currently Reading</option>
                               <option value="wantToRead">Want to Read</option>
