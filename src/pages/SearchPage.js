@@ -5,6 +5,8 @@ import '../App.css'
 class SearchPage extends Component {
 
   render () {
+    const { books } = this.props
+    console.log(books)
     return (
       <div className="search-books">
             <div className="search-books-bar">

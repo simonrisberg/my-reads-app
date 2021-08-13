@@ -25,7 +25,9 @@ class App extends React.Component {
         <Route exact path='/' render={() => (
           <MainPage books={this.state.books} />
         )} />
-        <Route path='/search' component={SearchPage} />
+        <Route path='/search' render={() => (
+          <SearchPage books={this.state.books} />
+        )} />
       </Router>
     )
   }

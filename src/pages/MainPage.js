@@ -7,7 +7,6 @@ class MainPage extends Component {
 
   render() {
     const { books } = this.props
-    console.log(books)
 
     const currentlyReadingBooks = books.filter((book) => (
       book.shelf.includes("currentlyReading")
