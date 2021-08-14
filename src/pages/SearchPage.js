@@ -6,19 +6,30 @@ import '../App.css'
 class SearchPage extends Component {
 
   state = {
-    searchQuery: ""
+    searchQuery: "",
+    books: []
+  }
+
+  fetchBooks = () => {
+    if (this.state.searchQuery) {
+      BooksAPI.search(this.state.searchQuery)
+        .then((books) => {
+          console.log('books', books)
+          this.setState({ books: books })
+        })
+    }
   }
 
   updateQuery = (searchQuery) => {
     this.setState(() => ({
       searchQuery: searchQuery.trim()
     }))
+    this.fetchBooks()
   }
 
   render() {
     const { searchQuery } = this.state
-    const searchedBooks = searchQuery === '' ? '' : BooksAPI.search(searchQuery)
-    
+    const books = this.state.books
 
     const fetchAuthors = (authors) => (
       authors.toString()
@@ -46,9 +57,9 @@ class SearchPage extends Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {searchedBooks === '' ? (<div>
+            {books.length === 0 ? (<div>
               <span>No books to be shown</span>
-            </div>) : searchedBooks.map((book) => (
+            </div>) : books.map((book) => (
               <li key={book.id}>
                 <div className="book">
                   <div className="book-top">
