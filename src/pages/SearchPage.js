@@ -17,10 +17,8 @@ class SearchPage extends Component {
 
   render() {
     const { searchQuery } = this.state
-    const { ownedBooks } = this.props
-    const searchedBooks = searchQuery === '' ? '' : ownedBooks.filter((book) => (
-      book.title.toLowerCase().includes(searchQuery.toLocaleLowerCase())
-    ))
+    const searchedBooks = searchQuery === '' ? '' : BooksAPI.search(searchQuery)
+    
 
     const fetchAuthors = (authors) => (
       authors.toString()
