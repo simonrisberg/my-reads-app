@@ -19,7 +19,7 @@ class SearchPage extends Component {
   render() {
     const { searchQuery } = this.state
     const { books } = this.props
-    const searchedBooks = searchQuery === '' ? books : books.filter((book) => (
+    const searchedBooks = searchQuery === '' ? '' : books.filter((book) => (
       book.title.toLowerCase().includes(searchQuery.toLocaleLowerCase())
     ))
 
@@ -50,7 +50,9 @@ class SearchPage extends Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {searchedBooks.map((book) => (
+            {searchedBooks === '' ? (<div>
+              <span>No books to be shown</span>
+            </div>) : searchedBooks.map((book) => (
               <li key={book.id}>
                 <div className="book">
                   <div className="book-top">
