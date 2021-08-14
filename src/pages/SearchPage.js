@@ -33,7 +33,7 @@ class SearchPage extends Component {
     const books = this.state.books
 
     const fetchAuthors = (authors) => (
-      authors !== 0 ? authors.toString() : "Anonymous"
+      authors != null ? authors.toString() : "Anonymous"
     )
 
     return (
