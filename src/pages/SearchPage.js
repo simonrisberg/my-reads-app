@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import * as BooksAPI from '../BooksAPI'
 import { Link } from 'react-router-dom'
+import MissingImage from '../icons/book-pack.svg'
 import '../App.css'
 
 class SearchPage extends Component {
@@ -32,7 +33,7 @@ class SearchPage extends Component {
     const books = this.state.books
 
     const fetchAuthors = (authors) => (
-      authors.toString()
+      authors != null ? authors.toString() : "Anonymous"
     )
 
     return (
@@ -63,7 +64,7 @@ class SearchPage extends Component {
               <li key={book.id}>
                 <div className="book">
                   <div className="book-top">
-                    <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
+                    <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks ? book.imageLinks.thumbnail : `${MissingImage}` })` }}></div>
                     <div className="book-shelf-changer">
                       <select value={book.shelf} onChange={(e) => BooksAPI.update(book, e.target.value)}>
                         <option value="move" disabled>Move to...</option>
