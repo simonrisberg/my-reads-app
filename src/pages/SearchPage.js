@@ -15,11 +15,10 @@ class SearchPage extends Component {
     }))
   }
 
-
   render() {
     const { searchQuery } = this.state
-    const { books } = this.props
-    const searchedBooks = searchQuery === '' ? '' : books.filter((book) => (
+    const { ownedBooks } = this.props
+    const searchedBooks = searchQuery === '' ? '' : ownedBooks.filter((book) => (
       book.title.toLowerCase().includes(searchQuery.toLocaleLowerCase())
     ))
 
@@ -27,7 +26,6 @@ class SearchPage extends Component {
       authors.toString()
     )
 
-    console.log(books)
     return (
       <div className="search-books">
         <div className="search-books-bar">

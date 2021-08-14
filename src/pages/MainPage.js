@@ -7,17 +7,17 @@ class MainPage extends Component {
 
 
   render() {
-    const { books } = this.props
+    const { ownedBooks } = this.props
 
-    const currentlyReadingBooks = books.filter((book) => (
+    const currentlyReadingBooks = ownedBooks.filter((book) => (
       book.shelf.includes("currentlyReading")
     ))
 
-    const wantToReadBooks = books.filter((book) => (
+    const wantToReadBooks = ownedBooks.filter((book) => (
       book.shelf.includes("wantToRead")
     ))
 
-    const readBooks = books.filter((book) => (
+    const readBooks = ownedBooks.filter((book) => (
       book.shelf.includes("read")
     ))
 
@@ -112,7 +112,7 @@ class MainPage extends Component {
             </div>
           </div>
         </div>
-        <Link className="open-search" to={'/search'}>Add a book</Link>
+        <Link className="open-search" to={'/search'}>Search for books</Link>
       </div>
     )
   }
