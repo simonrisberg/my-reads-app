@@ -12,7 +12,7 @@ class SearchPage extends Component {
   }
 
   fetchBooks = () => {
-    if (this.state.searchQuery) {
+    if (this.state.searchQuery && this.state.searchQuery != null) {
       BooksAPI.search(this.state.searchQuery)
         .then((books) => {
           console.log('books', books)
@@ -58,7 +58,7 @@ class SearchPage extends Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {books.length === 0 ? (<div>
+            {books.length === 0 || books.error === "empty query" ? (<div>
               <span>No books to be shown</span>
             </div>) : books.map((book) => (
               <li key={book.id}>
