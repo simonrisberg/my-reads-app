@@ -8,7 +8,7 @@ class MainPage extends Component {
 
 
   render() {
-    const { ownedBooks } = this.props
+    const { ownedBooks, updateBookShelf } = this.props
 
     const currentlyReadingBooks = ownedBooks.filter((book) => (
       book.shelf.includes("currentlyReading")
@@ -43,7 +43,7 @@ class MainPage extends Component {
                         <div className="book-top">
                           <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks ? book.imageLinks.thumbnail : `${MissingImage}` })` }}></div>
                           <div className="book-shelf-changer">
-                            <select value={book.shelf || 'none'} onChange={(e) => BooksAPI.update(book, e.target.value)}>
+                            <select value={book.shelf || 'none'} onChange={(e) => updateBookShelf(book, e.target.value)}>
                               <option value="move" disabled>Move to...</option>
                               <option value="currentlyReading">Currently Reading</option>
                               <option value="wantToRead">Want to Read</option>

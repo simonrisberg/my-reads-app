@@ -18,12 +18,16 @@ class App extends React.Component {
       }))
     })
   }
+
+  handleOnChange =(book, shelf) => {
+    BooksAPI.update(book, shelf)
+  }
   
   render() {
     return (
       <Router>
         <Route exact path='/' render={() => (
-          <MainPage ownedBooks={this.state.books} />
+          <MainPage ownedBooks={this.state.books} updateBookShelf={this.handleOnChange} />
         )} />
         <Route path='/search' render={() => (
           <SearchPage ownedBooks={this.state.books} />
