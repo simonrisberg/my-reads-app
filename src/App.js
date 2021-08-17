@@ -21,6 +21,11 @@ class App extends React.Component {
 
   handleOnChange =(book, shelf) => {
     BooksAPI.update(book, shelf)
+    BooksAPI.getAll().then((books) => {
+      this.setState(() => ({
+        books
+      }))
+    })
   }
   
   render() {

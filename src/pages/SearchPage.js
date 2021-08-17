@@ -11,12 +11,17 @@ class SearchPage extends Component {
     books: []
   }
 
-  fetchBooks = () => {
+  fetchBooks = (query) => {
     if (this.state.searchQuery && this.state.searchQuery != null) {
       BooksAPI.search(this.state.searchQuery)
         .then((books) => {
           console.log('books', books)
-          this.setState({ books: books })
+          if(query !== "") {
+            this.syncBooks(books)
+          }else{
+            this.setState({books: []})
+          }
+          
         })
     }
   }
@@ -25,7 +30,22 @@ class SearchPage extends Component {
     this.setState(() => ({
       searchQuery: searchQuery
     }))
-    this.fetchBooks()
+    this.fetchBooks(searchQuery)
+  }
+
+  syncBooks = (searchedBooks) => {
+    const { ownedBooks } = this.props
+    let newBooks = []
+    if(searchedBooks.length > 0) {
+      newBooks = searchedBooks.map((searchedBook) => {
+        const ownedBook = ownedBooks.find((owned) => owned.id === searchedBook.id)
+        return ownedBook ? ownedBook : searchedBook
+      })
+    }
+    this.setState(() => ({
+      books: newBooks
+    }))
+
   }
 
   render() {
