@@ -35,7 +35,7 @@ class App extends React.Component {
           <MainPage ownedBooks={this.state.books} updateBookShelf={this.handleOnChange} />
         )} />
         <Route path='/search' render={() => (
-          <SearchPage ownedBooks={this.state.books} />
+          <SearchPage ownedBooks={this.state.books} updateBookShelf={this.handleOnChange} />
         )} />
       </Router>
     )

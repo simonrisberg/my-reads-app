@@ -51,6 +51,7 @@ class SearchPage extends Component {
   render() {
     const { searchQuery } = this.state
     const books = this.state.books
+    const { updateBookShelf } = this.props
 
     const fetchAuthors = (authors) => (
       authors != null ? authors.toString() : "Anonymous"
@@ -86,7 +87,7 @@ class SearchPage extends Component {
                   <div className="book-top">
                     <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks ? book.imageLinks.thumbnail : `${MissingImage}` })` }}></div>
                     <div className="book-shelf-changer">
-                      <select value={book.shelf || 'none'} onChange={(e) => BooksAPI.update(book, e.target.value)}>
+                      <select value={book.shelf || 'none'} onChange={(e) => updateBookShelf(book, e.target.value)}>
                         <option value="move" disabled>Move to...</option>
                         <option value="currentlyReading">Currently Reading</option>
                         <option value="wantToRead">Want to Read</option>
