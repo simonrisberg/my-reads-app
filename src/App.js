@@ -21,8 +21,8 @@ class App extends React.Component {
     })
   }
 
-  syncBooks = (searchedBooks) => {
-    const ownedBooks = this.state.books
+  syncBooks = (searchedBooks, books) => {
+    const ownedBooks = books || []
     let newBooks = []
     if (searchedBooks.length > 0) {
       newBooks = searchedBooks.map((searchedBook) => {
@@ -31,7 +31,8 @@ class App extends React.Component {
       })
     }
     this.setState(() => ({
-      searchedBooks: newBooks
+      searchedBooks: newBooks,
+      books: books
     }))
 
   }
@@ -61,7 +62,8 @@ class App extends React.Component {
     const searchedBooks = this.state.searchedBooks
     BooksAPI.update(book, shelf).then(() => {
       BooksAPI.getAll().then((books) => {
-        this.setState({ books: books }, () => {this.syncBooks(searchedBooks)})
+        // this.setState({ books: books }, () => {this.syncBooks(searchedBooks)})
+        this.syncBooks(searchedBooks, books)
       })
     })
   }
