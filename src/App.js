@@ -58,9 +58,10 @@ class App extends React.Component {
   }
   
   handleOnChange = (book, shelf) => {
+    const searchedBooks = this.state.searchedBooks
     BooksAPI.update(book, shelf).then(() => {
       BooksAPI.getAll().then((books) => {
-        this.setState({ books: books })
+        this.setState({ books: books }, () => {this.syncBooks(searchedBooks)})
       })
     })
   }
