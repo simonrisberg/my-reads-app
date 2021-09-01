@@ -45,7 +45,7 @@ class App extends React.Component {
         .then((books) => {
           console.log('books', books)
           if (!query) {
-            this.setState((prevState) => ({ ...prevState, searchBooks: [] }))
+            this.setState({ searchedBooks: []})
           }
 
           this.syncBooks(books, this.state.books);
