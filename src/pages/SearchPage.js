@@ -7,6 +7,8 @@ class SearchPage extends Component {
   render() {
     const { updateBookShelf, searchedBooks, updateQuery, searchQuery } = this.props
 
+    console.log('searchedBooks', searchedBooks)
+
     const fetchAuthors = (authors) => (
       authors != null ? authors.toString() : "Anonymous"
     )

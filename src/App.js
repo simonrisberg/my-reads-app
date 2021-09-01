@@ -15,6 +15,7 @@ class App extends React.Component {
 
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
+  
       this.setState(() => ({
         books: books || []
       }))
@@ -39,22 +40,20 @@ class App extends React.Component {
 
   searchBooks = (query) => {
     if (query) {
+      console.log('query', query)
       BooksAPI.search(query)
         .then((books) => {
           console.log('books', books)
-          if (query) {
-            this.syncBooks(books)
-          } else {
-            this.setState({ searchedBooks: [] })
+          if (!query) {
+            this.setState((prevState) => ({ ...prevState, searchBooks: [] }))
           }
+
+          this.syncBooks(books, this.state.books);
         })
     }
   }
 
   updateQuery = (searchQuery) => {
-    this.setState(() => ({
-      searchQuery: searchQuery
-    }))
     this.searchBooks(searchQuery)
   }
   
